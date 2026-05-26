@@ -21,8 +21,8 @@ export default function DashboardLayout() {
         setUserName(profile.name);
         setLoading(false);
         
-        if (profile.role === 'EXAM_CONTROLLER' && (location.pathname === '/' || location.pathname === '/overview')) {
-          navigate('/schedules', { replace: true });
+        if (profile.role === 'EXAM_CONTROLLER' && (location.pathname === '/dashboard' || location.pathname === '/dashboard/overview')) {
+          navigate('/dashboard/schedules', { replace: true });
         }
       } catch (err) {
         navigate('/login');
@@ -38,14 +38,15 @@ export default function DashboardLayout() {
 
   const getPageTitle = () => {
     switch(location.pathname) {
-      case '/overview': return 'Overview';
-      case '/users': return 'Manage Users';
-      case '/announcements': return 'Announcements';
-      case '/notices': return 'Manage Notices';
-      case '/settings': return 'System Settings';
-      case '/schedules': return 'Manage Schedules';
-      case '/exam-seats': return 'Exam Seat Plans';
-      case '/results': return 'Manage Results';
+      case '/dashboard/overview': return 'Overview';
+      case '/dashboard/users': return 'Manage Users';
+      case '/dashboard/announcements': return 'Announcements';
+      case '/dashboard/notices': return 'Manage Notices';
+      case '/dashboard/settings': return 'System Settings';
+      case '/dashboard/schedules': return 'Manage Schedules';
+      case '/dashboard/exam-seats': return 'Exam Seat Plans';
+      case '/dashboard/results': return 'Manage Results';
+      case '/dashboard/chat-groups': return 'Chat Groups';
       default: return 'Dashboard';
     }
   };
@@ -69,29 +70,29 @@ export default function DashboardLayout() {
           {(userRole === 'ADMIN' || userRole === 'PRINCIPAL') && (
             <>
               <p style={{ fontSize: '11px', fontWeight: '600', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '8px 8px 4px 8px' }}>Main</p>
-              <NavLink to="/overview" className={({ isActive }) => `sidebar-nav-item ${isActive ? 'active' : ''}`}><LayoutDashboard size={18} /> Overview</NavLink>
+              <NavLink to="/dashboard/overview" className={({ isActive }) => `sidebar-nav-item ${isActive ? 'active' : ''}`}><LayoutDashboard size={18} /> Overview</NavLink>
               
               <p style={{ fontSize: '11px', fontWeight: '600', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '16px 8px 4px 8px' }}>Management</p>
-              <NavLink to="/users" className={({ isActive }) => `sidebar-nav-item ${isActive ? 'active' : ''}`}><Users size={18} /> Users</NavLink>
-              <NavLink to="/announcements" className={({ isActive }) => `sidebar-nav-item ${isActive ? 'active' : ''}`}><Megaphone size={18} /> Announcements</NavLink>
-              <NavLink to="/notices" className={({ isActive }) => `sidebar-nav-item ${isActive ? 'active' : ''}`}><FileText size={18} /> Notices</NavLink>
-              <NavLink to="/chat-groups" className={({ isActive }) => `sidebar-nav-item ${isActive ? 'active' : ''}`}><MessageSquare size={18} /> Chat Groups</NavLink>
+              <NavLink to="/dashboard/users" className={({ isActive }) => `sidebar-nav-item ${isActive ? 'active' : ''}`}><Users size={18} /> Users</NavLink>
+              <NavLink to="/dashboard/announcements" className={({ isActive }) => `sidebar-nav-item ${isActive ? 'active' : ''}`}><Megaphone size={18} /> Announcements</NavLink>
+              <NavLink to="/dashboard/notices" className={({ isActive }) => `sidebar-nav-item ${isActive ? 'active' : ''}`}><FileText size={18} /> Notices</NavLink>
+              <NavLink to="/dashboard/chat-groups" className={({ isActive }) => `sidebar-nav-item ${isActive ? 'active' : ''}`}><MessageSquare size={18} /> Chat Groups</NavLink>
             </>
           )}
 
           {userRole === 'EXAM_CONTROLLER' && (
             <>
               <p style={{ fontSize: '11px', fontWeight: '600', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '8px 8px 4px 8px' }}>Academic</p>
-              <NavLink to="/schedules" className={({ isActive }) => `sidebar-nav-item ${isActive ? 'active' : ''}`}><Calendar size={18} /> Schedules / Routines</NavLink>
-              <NavLink to="/exam-seats" className={({ isActive }) => `sidebar-nav-item ${isActive ? 'active' : ''}`}><ClipboardList size={18} /> Exam Seats</NavLink>
-              <NavLink to="/results" className={({ isActive }) => `sidebar-nav-item ${isActive ? 'active' : ''}`}><GraduationCap size={18} /> Results</NavLink>
+              <NavLink to="/dashboard/schedules" className={({ isActive }) => `sidebar-nav-item ${isActive ? 'active' : ''}`}><Calendar size={18} /> Schedules / Routines</NavLink>
+              <NavLink to="/dashboard/exam-seats" className={({ isActive }) => `sidebar-nav-item ${isActive ? 'active' : ''}`}><ClipboardList size={18} /> Exam Seats</NavLink>
+              <NavLink to="/dashboard/results" className={({ isActive }) => `sidebar-nav-item ${isActive ? 'active' : ''}`}><GraduationCap size={18} /> Results</NavLink>
             </>
           )}
           
           {userRole === 'ADMIN' && (
             <>
               <p style={{ fontSize: '11px', fontWeight: '600', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '16px 8px 4px 8px' }}>System</p>
-              <NavLink to="/settings" className={({ isActive }) => `sidebar-nav-item ${isActive ? 'active' : ''}`}><Settings size={18} /> Settings</NavLink>
+              <NavLink to="/dashboard/settings" className={({ isActive }) => `sidebar-nav-item ${isActive ? 'active' : ''}`}><Settings size={18} /> Settings</NavLink>
             </>
           )}
         </div>

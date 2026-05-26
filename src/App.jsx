@@ -12,13 +12,24 @@ import ManageExamSeats from './pages/ManageExamSeats';
 import ManageResults from './pages/ManageResults';
 import ManageChatGroups from './pages/ManageChatGroups';
 
+import PublicLayout from './pages/public/PublicLayout';
+import LandingPage from './pages/public/LandingPage';
+import AboutPage from './pages/public/AboutPage';
+import ContactPage from './pages/public/ContactPage';
+
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={<DashboardLayout />}>
-          <Route index element={<Navigate to="/overview" replace />} />
+        <Route path="/" element={<PublicLayout />}>
+          <Route index element={<LandingPage />} />
+          <Route path="about" element={<AboutPage />} />
+          <Route path="contact" element={<ContactPage />} />
+        </Route>
+
+        <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route index element={<Navigate to="/dashboard/overview" replace />} />
           <Route path="overview" element={<Overview />} />
           <Route path="users" element={<ManageUsers />} />
           <Route path="announcements" element={<Announcements />} />

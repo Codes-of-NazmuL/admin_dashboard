@@ -42,7 +42,7 @@ export default function Login() {
       }
       
       localStorage.setItem('admin_token', data.token);
-      navigate('/');
+      navigate('/dashboard');
     } catch (err) {
       setError(err.message);
     } finally {
